@@ -14,3 +14,6 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+// Message
+$router->post('/messages', ['uses' => 'MessageController@store', 'as' => 'api.messages.store']);
