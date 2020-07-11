@@ -60,6 +60,7 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('cors');
 $app->configure('mail');
 
 $app->alias('mail.manager', Illuminate\Mail\MailManager::class);
@@ -88,6 +89,10 @@ $app->alias('mailer', Illuminate\Contracts\Mail\MailQueue::class);
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
 
+$app->middleware([
+    Fruitcake\Cors\HandleCors::class,
+]);
+
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
@@ -102,6 +107,7 @@ $app->alias('mailer', Illuminate\Contracts\Mail\MailQueue::class);
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(Fruitcake\Cors\CorsServiceProvider::class);
 $app->register(Illuminate\Mail\MailServiceProvider::class);
 $app->register(Illuminate\Notifications\NotificationServiceProvider::class);
 
